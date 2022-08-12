@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Make U</string>
+    <!-- Page de connexion-->
+
+
+    <string name="ImgBgHome">Arriere plan de la page de connexion</string>
+    <string name="logIn">Connexion</string>
+    <string name="signUp">S\'inscrire</string>
+    <string name="darkModeButton">Mode sombre</string>
+    <string name="Home_Text">Accueil</string>
+    <string name="Walk_text">Pas</string>
+
+
+</resources>

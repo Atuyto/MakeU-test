@@ -1,0 +1,39 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+
+        <item name="background">@color/BackgroundColor</item>
+
+    </style>
+
+
+    <style name="MakeU" >
+        <item name="android:textSize">60sp</item>
+        <item name="android:fontFamily">@font/oxygen</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Composant du text par defaut noir-->
+    <style name="DefaultTextStyleBlack">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/oxygen</item>
+    </style>
+
+    <!-- Composant du text par defaut blanc  -->
+    <style name="DefaultTextStyleWhite" parent="DefaultTextStyleBlack">
+        <item name="android:textColor">@color/white</item>
+
+    </style>
+
+    <!-- Composant du suous texte  -->
+    <style name="DefaultTextStyleSubTitle" parent="DefaultTextStyleBlack">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">10sp</item>
+
+    </style>
+    
+    <!-- theme de la bar de navigation-->
+
+</resources>
