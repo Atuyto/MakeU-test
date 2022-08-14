@@ -1,14 +1,29 @@
 <resources>
     <string name="app_name">Make U</string>
-    <!-- Page de connexion-->
 
+
+    <!-- Page de connexion-->
 
     <string name="ImgBgHome">Arriere plan de la page de connexion</string>
     <string name="logIn">Connexion</string>
     <string name="signUp">S\'inscrire</string>
     <string name="darkModeButton">Mode sombre</string>
+
+    <!-- home page-->
     <string name="Home_Text">Accueil</string>
     <string name="Walk_text">Pas</string>
 
 
+    <!-- PoUp SignIN-->
+    <string name="Title">Créer un compte</string>
+    <string name="FirstName">Nom |</string>
+    <string name="Name">Prénom |</string>
+    <string name="Email">Adresse mail</string>
+    <string name="Password">Mots de passe</string>
+    <string name="Phone">Numéros de téléphone</string>
+    <string name="Size">Taille en cm</string>
+    <string name="weight">Poids</string>
+    <string name="SexH">Homme</string>
+    <string name="SexF">Femme</string>
+    <string name="SexA">Autres</string>
 </resources>
