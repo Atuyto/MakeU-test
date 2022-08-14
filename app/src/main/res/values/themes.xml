@@ -34,6 +34,10 @@
 
     </style>
     
-    <!-- theme de la bar de navigation-->
+    <!-- text change-->
+    <style name="SubtextButton" parent="DefaultTextStyleBlack">
+        <item name="android:textColor">@color/Active_bottom</item>
+
+    </style>
 
 </resources>
