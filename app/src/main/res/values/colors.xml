@@ -10,4 +10,6 @@
     <color name="BackgroundColor">#E3E3E3</color>
     <color name="Active_bottom">#B1B1B1</color>
 
+    <color name="transparent">#00FFFFFF</color>
+
 </resources>

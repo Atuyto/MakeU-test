@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Make U</string>
 
+    <string name="valide" >OK</string>
 
     <!-- Page de connexion-->
 
@@ -14,15 +15,18 @@
     <string name="Walk_text">Pas</string>
 
 
+
     <!-- PoUp SignIN-->
     <string name="Title">Créer un compte</string>
+    <string name="subtitle_phys">Information physique</string>
     <string name="FirstName">Nom |</string>
     <string name="Name">Prénom |</string>
-    <string name="Email">Adresse mail</string>
-    <string name="Password">Mots de passe</string>
-    <string name="Phone">Numéros de téléphone</string>
-    <string name="Size">Taille en cm</string>
-    <string name="weight">Poids</string>
+    <string name="Email">Adresse mail |</string>
+    <string name="Password">Mots de passe |</string>
+    <string name="Password_chek">Confirmer le mots de passe |</string>
+    <string name="Phone">Numéros de téléphone |</string>
+    <string name="Size">Taille en cm |</string>
+    <string name="weight">Poids |</string>
     <string name="SexH">Homme</string>
     <string name="SexF">Femme</string>
     <string name="SexA">Autres</string>

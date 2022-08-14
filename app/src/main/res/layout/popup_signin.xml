@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/CBox">
+    android:padding="@dimen/Default_Margin"
+    android:background="@drawable/box"
+    >
 
     <TextView
         android:id="@+id/title"
@@ -20,10 +23,9 @@
         android:id="@+id/Button_FirstName"
         android:layout_width="130dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="40dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_blue"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/Buttom_mail"
         app:layout_constraintTop_toBottomOf="@+id/title">
 
         <TextView
@@ -32,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:text="@string/FirstName" />
     </RelativeLayout>
 
@@ -40,22 +42,231 @@
         android:id="@+id/Buttom_name"
         android:layout_width="130dp"
         android:layout_height="30dp"
-        android:background="@drawable/button_blue"
-        android:layout_marginRight="40dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/button_blue"
+        app:layout_constraintEnd_toEndOf="@+id/Buttom_mail"
         app:layout_constraintTop_toBottomOf="@+id/title">
 
         <TextView
             android:id="@+id/Text_name"
+            style="@style/SubtextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Name"
-            style="@style/SubtextButton"
-            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:text="@string/Name" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Buttom_mail"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/button_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title">
+
+
+        <TextView
+            android:id="@+id/Text_email"
+            style="@style/SubtextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:text="@string/Email" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Buttom_phone"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Buttom_mail">
+
+
+        <TextView
+            android:id="@+id/Text_phone"
+            style="@style/SubtextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:text="@string/Phone" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Buttom_pass"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Buttom_phone">
+
+
+        <TextView
+            android:id="@+id/Text_pass"
+            style="@style/SubtextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:text="@string/Password" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Buttom_check_pass"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Buttom_pass">
+
+
+        <TextView
+            android:id="@+id/Text_check_pass"
+            style="@style/SubtextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:text="@string/Password_chek" />
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/line_separe"
+        android:layout_width="300dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Buttom_check_pass" />
+
+    <TextView
+        android:id="@+id/subtexte_phys"
+        style="@style/DefaultTextStyleWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:text="@string/subtitle_phys"
+        app:layout_constraintStart_toStartOf="@+id/line_separe"
+        app:layout_constraintTop_toBottomOf="@+id/line_separe" />
+
+    <RelativeLayout
+        android:id="@+id/Buttom_taille"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subtexte_phys">
+
+
+        <TextView
+            android:id="@+id/Text_taille"
+            style="@style/SubtextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:text="@string/Size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Buttom_poids"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Buttom_taille">
+
+
+        <TextView
+            android:id="@+id/Text_poid"
+            style="@style/SubtextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:text="@string/weight"
             />
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/line_separe"
+        app:layout_constraintTop_toBottomOf="@+id/Buttom_poids">
+
+        <TextView
+            style="@style/DefaultTextStyleWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/SexH" />
+
+        <ImageView
+            android:id="@+id/Button_H"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/circle_button_outline" />
+
+        <TextView
+            style="@style/DefaultTextStyleWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="@string/SexF" />
+
+        <ImageView
+            android:id="@+id/Button_F"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/circle_button_outline" />
+
+        <TextView
+            style="@style/DefaultTextStyleWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="@string/SexA" />
+
+        <ImageView
+            android:id="@+id/Button_A"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/circle_button_outline" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/Button_valide"
+        style="@style/DefaultTextStyleBlack"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="@dimen/Default_Margin"
+        android:background="@drawable/button_blue"
+        android:text="@string/valide"
+        app:layout_constraintEnd_toEndOf="@+id/line_separe"
+
+        app:layout_constraintStart_toStartOf="@+id/line_separe"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

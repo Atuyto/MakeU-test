@@ -8,7 +8,9 @@
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/drawable/box2.xml" value="0.1815" />
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/drawable/box_w.xml" value="0.1815" />
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/drawable/button.xml" value="0.1815" />
+        <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/drawable/button_blue.xml" value="0.1795" />
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/drawable/circle_button.xml" value="0.1815" />
+        <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/drawable/circle_button_outline.xml" value="0.1795" />
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.1815" />
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/drawable/ic_baseline_sporthalter_24.xml" value="0.1815" />
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/drawable/ic_outline_home_24.xml" value="0.1815" />
@@ -25,7 +27,7 @@
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/layout/fragment_settings.xml" value="0.2718579234972678" />
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/layout/home_page.xml" value="0.16" />
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/layout/login.xml" value="0.27109375" />
-        <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/layout/popup_signin.xml" value="0.2718579234972678" />
+        <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/layout/popup_signin.xml" value="0.25" />
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25" />
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1815" />
         <entry key="..\:/Users/Alexandre/Desktop/makeu/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1785" />
