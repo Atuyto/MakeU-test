@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/Default_Margin"
     android:background="@drawable/box"
-    >
+    app:circularflow_viewCenter="@dimen/Default_Margin">
 
     <TextView
         android:id="@+id/title"
@@ -19,129 +19,96 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/Button_FirstName"
+
+    <EditText
+        android:id="@+id/Buttom_Firstname"
+        style="@style/SubtextButton"
         android:layout_width="130dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_blue"
+        android:inputType="text"
+        android:paddingStart="10dp"
+        android:hint="@string/FirstName"
         app:layout_constraintStart_toStartOf="@+id/Buttom_mail"
-        app:layout_constraintTop_toBottomOf="@+id/title">
+        app:layout_constraintTop_toBottomOf="@+id/title"
+         />
 
-        <TextView
-            android:id="@+id/text_firstName"
-            style="@style/SubtextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:text="@string/FirstName" />
-    </RelativeLayout>
 
-    <RelativeLayout
+    <EditText
         android:id="@+id/Buttom_name"
         android:layout_width="130dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
+        android:inputType="textPersonName"
+        android:hint="@string/Name"
+        style="@style/SubtextButton"
+        android:paddingStart="10dp"
         android:background="@drawable/button_blue"
         app:layout_constraintEnd_toEndOf="@+id/Buttom_mail"
-        app:layout_constraintTop_toBottomOf="@+id/title">
+        app:layout_constraintTop_toBottomOf="@+id/title"/>
 
-        <TextView
-            android:id="@+id/Text_name"
-            style="@style/SubtextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:text="@string/Name" />
-    </RelativeLayout>
 
-    <RelativeLayout
+    <EditText
         android:id="@+id/Buttom_mail"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginTop="80dp"
         android:background="@drawable/button_blue"
+        android:inputType="textEmailAddress"
+        android:paddingStart="10dp"
+        android:hint="@string/Email"
+        style="@style/SubtextButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title">
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
-
-        <TextView
-            android:id="@+id/Text_email"
-            style="@style/SubtextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:text="@string/Email" />
-    </RelativeLayout>
-
-    <RelativeLayout
+    <EditText
         android:id="@+id/Buttom_phone"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_blue"
+        android:inputType="phone"
+        android:paddingStart="10dp"
+        android:hint="@string/Phone"
+        style="@style/SubtextButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Buttom_mail">
+        app:layout_constraintTop_toBottomOf="@+id/Buttom_mail"/>
 
 
-        <TextView
-            android:id="@+id/Text_phone"
-            style="@style/SubtextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:text="@string/Phone" />
-    </RelativeLayout>
 
-    <RelativeLayout
+    <EditText
         android:id="@+id/Buttom_pass"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_blue"
+        android:inputType="textPassword"
+        android:paddingStart="10dp"
+        android:hint="@string/Password"
+        style="@style/SubtextButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Buttom_phone">
+        app:layout_constraintTop_toBottomOf="@+id/Buttom_phone"/>
 
 
-        <TextView
-            android:id="@+id/Text_pass"
-            style="@style/SubtextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:text="@string/Password" />
-    </RelativeLayout>
-
-    <RelativeLayout
+    <EditText
         android:id="@+id/Buttom_check_pass"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_blue"
+        android:inputType="textPassword"
+        android:paddingStart="10dp"
+        android:hint="@string/Password_chek"
+        style="@style/SubtextButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Buttom_pass">
+        app:layout_constraintTop_toBottomOf="@+id/Buttom_pass"/>
 
-
-        <TextView
-            android:id="@+id/Text_check_pass"
-            style="@style/SubtextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:text="@string/Password_chek" />
-    </RelativeLayout>
-
-    <androidx.cardview.widget.CardView
+    <ImageView
         android:id="@+id/line_separe"
         android:layout_width="300dp"
         android:layout_height="5dp"
@@ -162,51 +129,36 @@
         app:layout_constraintStart_toStartOf="@+id/line_separe"
         app:layout_constraintTop_toBottomOf="@+id/line_separe" />
 
-    <RelativeLayout
+    <EditText
         android:id="@+id/Buttom_taille"
         android:layout_width="150dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_blue"
+        android:inputType="number"
+        android:paddingStart="10dp"
+        android:hint="@string/Size"
+        style="@style/SubtextButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subtexte_phys">
+        app:layout_constraintTop_toBottomOf="@+id/subtexte_phys"/>
 
-
-        <TextView
-            android:id="@+id/Text_taille"
-            style="@style/SubtextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:text="@string/Size" />
-    </RelativeLayout>
-
-    <RelativeLayout
+    <EditText
         android:id="@+id/Buttom_poids"
         android:layout_width="150dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_blue"
+        android:inputType="number"
+        android:paddingStart="10dp"
+        android:hint="@string/weight"
+        style="@style/SubtextButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Buttom_taille">
-
-
-        <TextView
-            android:id="@+id/Text_poid"
-            style="@style/SubtextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:text="@string/weight"
-            />
-    </RelativeLayout>
+        app:layout_constraintTop_toBottomOf="@+id/Buttom_taille"/>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/nav_button_sex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -265,8 +217,7 @@
         android:background="@drawable/button_blue"
         android:text="@string/valide"
         app:layout_constraintEnd_toEndOf="@+id/line_separe"
-
         app:layout_constraintStart_toStartOf="@+id/line_separe"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/nav_button_sex" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
