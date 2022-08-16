@@ -44,6 +44,7 @@
     
     <style name="CustomDialogTheme" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:gravity">center</item>
 
     </style>
 </resources>

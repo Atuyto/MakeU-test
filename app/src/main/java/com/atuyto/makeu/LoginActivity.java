@@ -17,6 +17,7 @@ import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.atuyto.makeu.Fragments.EntreinementFragment;
@@ -51,8 +52,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SignInPopUp.SignInPopUp(LoginActivity.this);
-
-
             }
         });
 
