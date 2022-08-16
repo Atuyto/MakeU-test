@@ -29,6 +29,7 @@
         android:background="@drawable/button_blue"
         android:inputType="text"
         android:paddingStart="10dp"
+
         android:hint="@string/FirstName"
         app:layout_constraintStart_toStartOf="@+id/Buttom_mail"
         app:layout_constraintTop_toBottomOf="@+id/title"
@@ -207,6 +208,8 @@
             android:layout_marginLeft="10dp"
             android:background="@drawable/circle_button_outline" />
     </LinearLayout>
+
+
 
     <Button
         android:id="@+id/Button_valide"
