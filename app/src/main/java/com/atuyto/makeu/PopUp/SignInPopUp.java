@@ -6,11 +6,17 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowId;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -52,9 +58,19 @@ public class SignInPopUp extends AppCompatActivity {
         EditText SignIn_Size = SignInpopup.findViewById(R.id.Buttom_taille);
 
         Button Button_Valide = SignInpopup.findViewById(R.id.Button_valide);
+        ImageButton Button_HelpPassword = SignInpopup.findViewById(R.id.ButtonHelpPassword);
+
 
         ImageView buttonH, buttonF, buttonA;
         buttonH = SignInpopup.findViewById(R.id.Button_H); buttonF = SignInpopup.findViewById(R.id.Button_F); buttonA = SignInpopup.findViewById(R.id.Button_A);
+
+        Button_HelpPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopUpMessage(inflater, dialogBuilder);
+            }
+        });
+
         buttonH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,7 +123,7 @@ public class SignInPopUp extends AppCompatActivity {
                 VerifieCoordone(SignIn_Email, Email, LoginActivity);
                 VerifieCoordone(SignIn_Size, sizeStr, LoginActivity);
                 VerifieCoordone(SignIn_Weight, weightStr, LoginActivity);
-                VerifMdp(SignIn_Password, SignIn_checkPassword, Password, CheckPassword, LoginActivity);
+                VerifMdp(SignIn_Password, SignIn_checkPassword, Password, CheckPassword, LoginActivity, inflater, dialogBuilder);
 
 
 
@@ -156,7 +172,7 @@ public class SignInPopUp extends AppCompatActivity {
 
     }
 
-    private void VerifMdp(EditText NameEditText, EditText SecondNameEditText, String Name, String SecondName, Context context)
+    private void VerifMdp(EditText NameEditText, EditText SecondNameEditText, String Name, String SecondName, Context context, LayoutInflater inflater, AlertDialog.Builder dialogBuilder )
     {
 
         Pattern letter = Pattern.compile("[a-zA-z]");
@@ -176,19 +192,30 @@ public class SignInPopUp extends AppCompatActivity {
                 SecondNameEditText.setHintTextColor(ContextCompat.getColor(context, R.color.Active_bottom));
                 CountVerif++;
             }else {
-                Toast.makeText(context, "Votre mots de passe ne correspond pas", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Votre mot de passe ne correspond pas", Toast.LENGTH_LONG).show();
                 SecondNameEditText.setBackground(ContextCompat.getDrawable(context, R.drawable.button_red));
                 SecondNameEditText.setHintTextColor(ContextCompat.getColor(context, R.color.Red));
             }
         }else {
-            Toast.makeText(context, "Votre mots de passe ne contient pas de caractere spéciaux", Toast.LENGTH_LONG).show();
             NameEditText.setBackground(ContextCompat.getDrawable(context, R.drawable.button_red));
             NameEditText.setHintTextColor(ContextCompat.getColor(context, R.color.Red));
+            PopUpMessage( inflater, dialogBuilder);
 
         }
 
 
 
+    }
+
+    private void PopUpMessage(LayoutInflater inflater, AlertDialog.Builder dialogBuilder ){
+        final View PopUpMessage = inflater.inflate( R.layout.popup_message, null );
+
+        TextView message = PopUpMessage.findViewById(R.id.MessageText);
+        TextView Title = PopUpMessage.findViewById(R.id.TitleText);
+
+        Title.setText(R.string.Mdp);
+        message.setText(R.string.dialog_message);
+        dialogBuilder.setView(PopUpMessage).create().show();
     }
 
 }

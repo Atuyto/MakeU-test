@@ -30,4 +30,14 @@
     <string name="SexH">Homme</string>
     <string name="SexF">Femme</string>
     <string name="SexA">Autres</string>
+
+    <!-- PopUp message -->
+    <string name="dialog_message"><![CDATA[Votre mot de passe doit être supérieur à 8 caractères et doit contenir une majuscule, des chiffres et un de ces caractères : !@/#$%&*()_+=|<>?{}\\[\\]~-] \]]></string>
+    <string name="Mdp">Mot de passe</string>
+    
+    
+    <!-- PopUp Login-->
+    <string name="Login">Connexion</string>
+
+    
 </resources>

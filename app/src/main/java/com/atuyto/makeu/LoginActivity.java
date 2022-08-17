@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat;
 
 import com.atuyto.makeu.Fragments.EntreinementFragment;
 import com.atuyto.makeu.Fragments.HomeFragment;
+import com.atuyto.makeu.PopUp.LoginPopUp;
 import com.atuyto.makeu.PopUp.SignInPopUp;
 
 public class LoginActivity extends AppCompatActivity {
@@ -43,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mainActivity = new Intent(LoginActivity.this, MainActivity.class);
         SignInPopUp SignInPopUp = new SignInPopUp();
+        LoginPopUp LoginPopUp = new LoginPopUp();
 
         loginButton = findViewById(R.id.BLogIn);
         signingButton = findViewById(R.id.BSignUp);
@@ -58,10 +60,9 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // do verification
-                Toast.makeText(LoginActivity.this, "connexion", Toast.LENGTH_SHORT).show();
-                startActivity(mainActivity);
-                finish();
+                LoginPopUp.LoginPopUp(LoginActivity.this);
+
+
             }
         });
 
