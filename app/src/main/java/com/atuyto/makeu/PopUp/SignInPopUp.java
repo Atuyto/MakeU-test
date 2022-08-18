@@ -2,16 +2,11 @@ package com.atuyto.makeu.PopUp;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import android.view.Gravity;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowId;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -25,9 +20,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.atuyto.makeu.LoginActivity;
 import com.atuyto.makeu.MainActivity;
 import com.atuyto.makeu.R;
+import com.atuyto.makeu.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,6 +41,7 @@ public class SignInPopUp extends AppCompatActivity {
     private String Name, FirstName, Email, Password, CheckPassword, PhoneNumber, sizeStr, weightStr;
     private int weight, size;
 
+    private FirebaseAuth mAuth;
 
     // Création de la popup d'inscription
     @SuppressLint("NotConstructor")
@@ -56,6 +59,9 @@ public class SignInPopUp extends AppCompatActivity {
         EditText SignIn_Phone = SignInpopup.findViewById(R.id.Buttom_phone);
         EditText SignIn_Weight = SignInpopup.findViewById(R.id.Buttom_poids);
         EditText SignIn_Size = SignInpopup.findViewById(R.id.Buttom_taille);
+
+
+        mAuth = FirebaseAuth.getInstance();
 
         Button Button_Valide = SignInpopup.findViewById(R.id.Button_valide);
         ImageButton Button_HelpPassword = SignInpopup.findViewById(R.id.ButtonHelpPassword);
@@ -108,21 +114,31 @@ public class SignInPopUp extends AppCompatActivity {
             public void onClick(View view) {
                 CountVerif = 0;
                 //Recuperer les entre de l'utilisateur
-                Name = SignIn_Name.getText().toString();
-                FirstName = SignIn_FirstName.getText().toString();
-                Email = SignIn_Email.getText().toString();
-                Password = SignIn_Password.getText().toString();
-                CheckPassword = SignIn_checkPassword.getText().toString();
-                PhoneNumber = SignIn_Phone.getText().toString();
-                sizeStr = SignIn_Size.getText().toString(); //size = Integer.parseInt(sizeStr);
-                weightStr = SignIn_Weight.getText().toString(); //weight = Integer.parseInt(weightStr);
+                Name = SignIn_Name.getText().toString().trim();
+                FirstName = SignIn_FirstName.getText().toString().trim();
+                Email = SignIn_Email.getText().toString().trim();
+                Password = SignIn_Password.getText().toString().trim();
+                CheckPassword = SignIn_checkPassword.getText().toString().trim();
+                PhoneNumber = SignIn_Phone.getText().toString().trim();
+                sizeStr = SignIn_Size.getText().toString().trim(); //size = Integer.parseInt(sizeStr);
+                weightStr = SignIn_Weight.getText().toString().trim(); //weight = Integer.parseInt(weightStr);
 
 
-                VerifieCoordone(SignIn_Name, Name, LoginActivity);
-                VerifieCoordone(SignIn_FirstName, FirstName, LoginActivity);
-                VerifieCoordone(SignIn_Email, Email, LoginActivity);
-                VerifieCoordone(SignIn_Size, sizeStr, LoginActivity);
-                VerifieCoordone(SignIn_Weight, weightStr, LoginActivity);
+                VerifieCoordone(SignIn_Name, Name, LoginActivity, "Veuillez indiquer votre prénom");
+                VerifieCoordone(SignIn_FirstName, FirstName, LoginActivity, "Veuillez indiquer votre nom");
+                if(!Patterns.EMAIL_ADDRESS.matcher(Email).matches() || Email.isEmpty()){
+                    SignIn_Email.setError("Veuillez mettre une adresse Email valide ");
+                    SignIn_Email.requestFocus();
+                    SignIn_Email.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.button_red));
+                    SignIn_Email.setHintTextColor(ContextCompat.getColor(LoginActivity, R.color.Red));
+                }else {
+                    SignIn_Email.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.button_blue));
+                    SignIn_Email.setHintTextColor(ContextCompat.getColor(LoginActivity, R.color.Active_bottom));
+                    CountVerif++;
+                }
+
+                VerifieCoordone(SignIn_Size, sizeStr, LoginActivity, "Veuillez indiquer taille");
+                VerifieCoordone(SignIn_Weight, weightStr, LoginActivity, "Veuillez indiquer votre poids");
                 VerifMdp(SignIn_Password, SignIn_checkPassword, Password, CheckPassword, LoginActivity, inflater, dialogBuilder);
 
 
@@ -130,6 +146,8 @@ public class SignInPopUp extends AppCompatActivity {
                 if(PhoneNumber.equals("") || PhoneNumber.length() != 10 ){
                     SignIn_Phone.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.button_red));
                     SignIn_Phone.setHintTextColor(ContextCompat.getColor(LoginActivity, R.color.Red));
+                    SignIn_Phone.setError("Veuillez mettre un numéros de téléphone ");
+                    SignIn_Phone.requestFocus();
                 }else{
                     CountVerif++;
                     SignIn_Phone.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.button_blue));
@@ -143,11 +161,46 @@ public class SignInPopUp extends AppCompatActivity {
 
 
                 if(CountVerif == 9){
-                    LoginActivity.startActivity(new Intent(LoginActivity, MainActivity.class));
-                    dialogBuilder.setCancelable(true);
-                    ActivityCompat.finishAffinity((Activity) LoginActivity);
+                    FirebaseUser User = FirebaseAuth.getInstance().getCurrentUser();
+
+                    if(User != null ){
+                        mAuth.createUserWithEmailAndPassword(Email, Password)
+                                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            User user = new User(Name, FirstName, Email, weightStr, sizeStr, UserSex);
+
+                                            FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()) {
+
+                                                                Toast.makeText(LoginActivity, "users register", Toast.LENGTH_SHORT).show();
+                                                                LoginActivity.startActivity(new Intent(LoginActivity, MainActivity.class));
+                                                                dialogBuilder.setCancelable(true);
+                                                                ActivityCompat.finishAffinity((Activity) LoginActivity);
+                                                            }
+                                                            else{
+                                                                Toast.makeText(LoginActivity, "Probleme", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    });
+
+
+                                        }
+                                    }
+                                });
+                    }
+                    else {
+                        Toast.makeText(LoginActivity, "Vous etes déjà inscrit", Toast.LENGTH_SHORT).show();
+
+                    }
 
                 }
+
+
 
             }
         });
@@ -156,12 +209,14 @@ public class SignInPopUp extends AppCompatActivity {
 
     }
 
-    private void VerifieCoordone(EditText NameEditText, String Name, Context context)
+    private void VerifieCoordone(EditText NameEditText, String Name, Context context, String message)
     {
 
-        if(Name.equals("")){
+        if(Name.isEmpty()){
             NameEditText.setBackground(ContextCompat.getDrawable(context, R.drawable.button_red));
             NameEditText.setHintTextColor(ContextCompat.getColor(context, R.color.Red));
+            NameEditText.setError(message);
+            NameEditText.requestFocus();
         }
         else{
             NameEditText.setBackground(ContextCompat.getDrawable(context, R.drawable.button_blue));

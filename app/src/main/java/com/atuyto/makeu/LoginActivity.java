@@ -24,6 +24,7 @@ import com.atuyto.makeu.Fragments.EntreinementFragment;
 import com.atuyto.makeu.Fragments.HomeFragment;
 import com.atuyto.makeu.PopUp.LoginPopUp;
 import com.atuyto.makeu.PopUp.SignInPopUp;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -48,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton = findViewById(R.id.BLogIn);
         signingButton = findViewById(R.id.BSignUp);
+
 
 
         signingButton.setOnClickListener(new View.OnClickListener() {
