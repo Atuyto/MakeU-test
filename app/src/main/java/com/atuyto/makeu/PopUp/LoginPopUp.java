@@ -108,9 +108,6 @@ public class LoginPopUp {
             }
         });
 
-
-
-
         dialogBuilder.setView(LoginPopUp).create().show();
 
     }

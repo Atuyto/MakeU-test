@@ -151,7 +151,7 @@ public class SignInPopUp extends AppCompatActivity {
 
 
 
-                if(PhoneNumber.equals("") || PhoneNumber.length() != 10 ){
+                if(PhoneNumber.equals("") || PhoneNumber.length() != 10 || !Patterns.PHONE.matcher(PhoneNumber).matches()){
                     SignIn_Phone.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.button_red));
                     SignIn_Phone.setHintTextColor(ContextCompat.getColor(LoginActivity, R.color.Red));
                     SignIn_Phone.setError("Veuillez mettre un numéros de téléphone ");
