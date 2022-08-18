@@ -60,6 +60,14 @@ public class SignInPopUp extends AppCompatActivity {
         EditText SignIn_Weight = SignInpopup.findViewById(R.id.Buttom_poids);
         EditText SignIn_Size = SignInpopup.findViewById(R.id.Buttom_taille);
 
+        SignIn_Name.setText(null);
+        SignIn_FirstName.setText(null);
+        SignIn_Email.setText(null);
+        SignIn_Password.setText(null);
+        SignIn_checkPassword.setText(null);
+        SignIn_Phone.setText(null);
+        SignIn_Weight.setText(null);
+        SignIn_Size.setText(null);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -163,13 +171,16 @@ public class SignInPopUp extends AppCompatActivity {
                 if(CountVerif == 9){
                     FirebaseUser User = FirebaseAuth.getInstance().getCurrentUser();
 
-                    if(User != null ){
+                    if(User.getEmail().equals(Email) ){
+                        Toast.makeText(LoginActivity, "Vous etes déjà inscrit", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
                         mAuth.createUserWithEmailAndPassword(Email, Password)
                                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()) {
-                                            User user = new User(Name, FirstName, Email, weightStr, sizeStr, UserSex);
+                                            User user = new User(Name, FirstName, Email, PhoneNumber, weightStr, sizeStr, UserSex);
 
                                             FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -192,9 +203,7 @@ public class SignInPopUp extends AppCompatActivity {
                                         }
                                     }
                                 });
-                    }
-                    else {
-                        Toast.makeText(LoginActivity, "Vous etes déjà inscrit", Toast.LENGTH_SHORT).show();
+
 
                     }
 

@@ -17,6 +17,7 @@ import com.atuyto.makeu.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class PopUpResetPassword {
 
@@ -39,6 +40,9 @@ public class PopUpResetPassword {
             @Override
             public void onClick(View view) {
                 String Email = Email_edit.getText().toString().trim();
+                FirebaseUser User = FirebaseAuth.getInstance().getCurrentUser();
+
+
 
                 if(Email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
                     Email_edit.setError("Veuillez indiquer une adresse Email valide");

@@ -43,6 +43,10 @@ public class LoginPopUp {
         EditText Password = LoginPopUp.findViewById(R.id.Login_Password);
         TextView mdpOublier = LoginPopUp.findViewById(R.id.MdpOublier);
 
+        Email.setText(null);
+        Password.setText(null);
+        mdpOublier.setText(null);
+
         Button button_valide = LoginPopUp.findViewById(R.id.Button_valide);
 
         mAuth = FirebaseAuth.getInstance();
@@ -62,12 +66,25 @@ public class LoginPopUp {
                 password = Password.getText().toString().trim();
 
                 if(email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    Email.setError("Veuillez indiquez une adresse Email");
+                    Email.requestFocus();
                     Email.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.button_red));
                     Email.setHintTextColor(ContextCompat.getColor(LoginActivity, R.color.Red));
                 }
                 else {
                     Email.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.button_blue));
                     Email.setHintTextColor(ContextCompat.getColor(LoginActivity, R.color.Active_bottom));
+                }
+
+                if(password.isEmpty()){
+                    Password.setError("Veuillez indiquer votre mot de passe");
+                    Password.requestFocus();
+                    Password.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.button_red));
+                    Password.setHintTextColor(ContextCompat.getColor(LoginActivity, R.color.Red));
+                }
+                else {
+                    Password.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.button_blue));
+                    Password.setHintTextColor(ContextCompat.getColor(LoginActivity, R.color.Active_bottom));
                 }
 
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
