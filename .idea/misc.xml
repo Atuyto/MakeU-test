@@ -32,7 +32,6 @@
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/layout/login.xml" value="0.27109375" />
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/layout/popup_login.xml" value="0.27109375" />
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/layout/popup_message.xml" value="0.25" />
-        <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/layout/popup_reset_password.xml" value="0.33" />
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/layout/popup_signin.xml" value="0.33" />
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25" />
         <entry key="..\:/Users/Alexandre/Desktop/essaie/makeu/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1815" />
@@ -41,6 +40,9 @@
         <entry key="..\:/Users/Alexandre/Desktop/makeu/app/src/main/res/drawable/button.xml" value="0.1785" />
         <entry key="..\:/Users/Alexandre/Desktop/makeu/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1785" />
         <entry key="..\:/Users/Alexandre/Desktop/makeu/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/alexa/Desktop/MakeU/app/src/main/res/drawable/button_blue.xml" value="0.2485" />
+        <entry key="..\:/Users/alexa/Desktop/MakeU/app/src/main/res/layout/popup_reset_password.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/alexa/Desktop/MakeU/app/src/main/res/layout/popup_signin.xml" value="0.67" />
       </map>
     </option>
   </component>

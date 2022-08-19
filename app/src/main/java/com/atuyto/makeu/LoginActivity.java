@@ -3,26 +3,16 @@ package com.atuyto.makeu;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import com.atuyto.makeu.Fragments.EntreinementFragment;
-import com.atuyto.makeu.Fragments.HomeFragment;
-import com.atuyto.makeu.PopUp.LoginPopUp;
 import com.atuyto.makeu.PopUp.SignInPopUp;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -32,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private RelativeLayout signingButton;
     private Intent mainActivity;
     private Activity activity;
-
+    private TextView SignInpopup_FirstName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +34,6 @@ public class LoginActivity extends AppCompatActivity {
         this.activity = this;
 
         mainActivity = new Intent(LoginActivity.this, MainActivity.class);
-        SignInPopUp SignInPopUp = new SignInPopUp();
-        LoginPopUp LoginPopUp = new LoginPopUp();
-
         loginButton = findViewById(R.id.BLogIn);
         signingButton = findViewById(R.id.BSignUp);
 
@@ -55,18 +42,30 @@ public class LoginActivity extends AppCompatActivity {
         signingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SignInPopUp.SignInPopUp(LoginActivity.this);
+                createSignInPopUp();
             }
         });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginPopUp.LoginPopUp(LoginActivity.this);
-
-
+                // do verification
+                Toast.makeText(LoginActivity.this, "connexion", Toast.LENGTH_SHORT ).show();
+                startActivity(mainActivity);
+                finish();
             }
         });
+
+
+    }
+
+    public void createSignInPopUp(){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this, R.style.CustomDialogTheme);
+        final View SignInpopup = getLayoutInflater().inflate(R.layout.popup_signin, null);
+        SignInpopup_FirstName = (TextView) SignInpopup.findViewById((R.id.text_firstName));
+
+
+        dialogBuilder.setView(SignInpopup).create().show();
 
     }
 }

@@ -40,7 +40,7 @@
     <string name="Login">Connexion</string>
     <string name="MdpOublier">Mot de passe oublié</string>
     <string name="resetPassword">Rénitialiser votre mot de passe</string>
-    <string name="resetPasswordEmail">Entrer votre Email</string>
+    <string name="resetPasswordEmail">Entrer votre Email |</string>
 
 
 </resources>

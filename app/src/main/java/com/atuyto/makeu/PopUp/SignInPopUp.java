@@ -175,6 +175,7 @@ public class SignInPopUp extends AppCompatActivity {
                         Toast.makeText(LoginActivity, "Vous etes déjà inscrit", Toast.LENGTH_SHORT).show();
                     }
                     else {
+
                         mAuth.createUserWithEmailAndPassword(Email, Password)
                                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                     @Override
