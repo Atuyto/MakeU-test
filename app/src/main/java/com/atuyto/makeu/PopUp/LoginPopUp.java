@@ -4,8 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,7 +33,8 @@ public class LoginPopUp {
     private String password, email;
 
     private FirebaseAuth mAuth;
-
+    private int Count;
+    private boolean passwordvisible;
 
     @SuppressLint("NotConstructor")
     public void LoginPopUp(Context LoginActivity){
@@ -45,11 +49,12 @@ public class LoginPopUp {
 
         Email.setText(null);
         Password.setText(null);
-        mdpOublier.setText(null);
 
         Button button_valide = LoginPopUp.findViewById(R.id.Button_valide);
 
         mAuth = FirebaseAuth.getInstance();
+
+        mdpSHowHide(Password);
 
         mdpOublier.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +79,7 @@ public class LoginPopUp {
                 else {
                     Email.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.button_blue));
                     Email.setHintTextColor(ContextCompat.getColor(LoginActivity, R.color.Active_bottom));
+                    Count++;
                 }
 
                 if(password.isEmpty()){
@@ -85,22 +91,28 @@ public class LoginPopUp {
                 else {
                     Password.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.button_blue));
                     Password.setHintTextColor(ContextCompat.getColor(LoginActivity, R.color.Active_bottom));
+                    Count++;
                 }
 
-                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            LoginActivity.startActivity(new Intent(LoginActivity, MainActivity.class));
-                            dialogBuilder.setCancelable(true);
-                            ActivityCompat.finishAffinity((Activity) LoginActivity);
+                if(Count == 2)
+                {
+                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                LoginActivity.startActivity(new Intent(LoginActivity, MainActivity.class));
+                                dialogBuilder.setCancelable(true);
+                                ActivityCompat.finishAffinity((Activity) LoginActivity);
 
+                            }
+                            else{
+                                Toast.makeText(LoginActivity, "Erreur de connexion, ressayer", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                        else{
-                            Toast.makeText(LoginActivity, "Erreur de connexion, ressayer", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                    });
+                }else {
+                    Toast.makeText(LoginActivity, "Veuillez indiquer des information correcte ", Toast.LENGTH_SHORT).show();
+                }
 
 
 
@@ -110,5 +122,31 @@ public class LoginPopUp {
 
         dialogBuilder.setView(LoginPopUp).create().show();
 
+    }
+    @SuppressLint("ClickableViewAccessibility")
+    private void mdpSHowHide(EditText EditName){
+        EditName.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                final int right = 2;
+                if(event.getAction() == MotionEvent.ACTION_UP){
+                    if(event.getRawX()>=EditName.getRight()-EditName.getCompoundDrawables()[right].getBounds().width()){
+                        int selection = EditName.getSelectionEnd();
+                        if(passwordvisible){
+                            EditName.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_eyes_outline_bar_24, 0);
+                            EditName.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            passwordvisible=false;
+                        }else {
+                            EditName.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_eyes_outline_nobar_24, 0);
+                            EditName.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            passwordvisible=true;
+                        }
+                        EditName.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
     }
 }

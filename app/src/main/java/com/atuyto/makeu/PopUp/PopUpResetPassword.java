@@ -2,7 +2,6 @@ package com.atuyto.makeu.PopUp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,23 +16,14 @@ import androidx.core.content.ContextCompat;
 import com.atuyto.makeu.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseException;
-import com.google.firebase.FirebaseTooManyRequestsException;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthOptions;
-import com.google.firebase.auth.PhoneAuthProvider;
-
-import java.util.concurrent.TimeUnit;
 
 public class PopUpResetPassword {
 
     private FirebaseAuth mAuth;
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
-    private String verificationId;
+    private int Count;
+
 
     @SuppressLint("NotConstructor")
     public void PopUpResetPassword(Context LoginActivity){
@@ -43,83 +33,46 @@ public class PopUpResetPassword {
         final View PopUpReset = inflater.inflate( R.layout.popup_reset_password, null );
 
         EditText Email_edit = PopUpReset.findViewById(R.id.EmailRestePassword);
-        EditText Phone_edit = PopUpReset.findViewById(R.id.PhoneNumber);
-
 
         Button buttonReset = PopUpReset.findViewById(R.id.Reset);
         mAuth = FirebaseAuth.getInstance();
-        mAuth.setLanguageCode("fr");
-
 
         buttonReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String Email = Email_edit.getText().toString().trim();
-                String PhoneNumber = Phone_edit.getText().toString().trim();
-
                 FirebaseUser User = FirebaseAuth.getInstance().getCurrentUser();
 
-                if(User.getEmail().equals(Email))
-                {
-                    PhoneAuthOptions options =
-                            PhoneAuthOptions.newBuilder(mAuth)
-                                    .setPhoneNumber(PhoneNumber)       // Phone number to verify
-                                    .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                                    .setActivity(this)                 // Activity (for callback binding)
-                                    .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
-                                    .build();
-                    PhoneAuthProvider.verifyPhoneNumber(options);
-
-                    mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
-                        @Override
-                        public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
-                            final String code = credential.getSmsCode();
-                            if(code != null)
-                                verifycode(code);
-                        }
-
-                        @Override
-                        public void onVerificationFailed(FirebaseException e) {
-                            Toast.makeText(LoginActivity, "verification failled", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onCodeSent(@NonNull String s,
-                                               @NonNull PhoneAuthProvider.ForceResendingToken token) {
-                            super.onCodeSent(s, token);
-                            verificationId = s;
-                        }
-                    };
-
-
-
+                if(Email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
+                    Email_edit.setError("Veuillez indiquer une adresse Email valide");
+                    Email_edit.requestFocus();
+                    Email_edit.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.button_red));
+                    Email_edit.setHintTextColor(ContextCompat.getColor(LoginActivity, R.color.Red));
                 }
-                else{
-                    Toast.makeText(LoginActivity, "Vous netes pas inscrit", Toast.LENGTH_SHORT).show();
+                else {
+                    Email_edit.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.button_blue));
+                    Email_edit.setHintTextColor(ContextCompat.getColor(LoginActivity, R.color.Active_bottom));
+                    Count++;
                 }
+                if(Count ==1){
+                    mAuth.sendPasswordResetEmail(Email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful())
+                                Toast.makeText(LoginActivity, "Vérifier vos emails", Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(LoginActivity, "Veuillez réessayer", Toast.LENGTH_SHORT).show();
+                        }
 
+                    });
+                }else{
+                    Email_edit.setError("Veuillez indiquer une adresse Email valide");
+                    Email_edit.requestFocus();
+                }
 
             }
         });
 
         dialogBuilder.setView(PopUpReset).create().show();
-    }
-
-    private void verifycode(String code) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
-        signInByCredential(credential);
-    }
-
-    private void signInByCredential(PhoneAuthCredential credential) {
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-
-                }
-            }
-        });
     }
 }

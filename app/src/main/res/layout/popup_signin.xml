@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+
     <EditText
         android:id="@+id/Buttom_Firstname"
         style="@style/SubtextButton"
@@ -90,19 +91,24 @@
         android:paddingStart="10dp"
         android:hint="@string/Password"
         style="@style/SubtextButton"
+        android:drawableRight="@drawable/ic_eyes_outline_bar_24"
+        android:paddingEnd="10dp"
+        android:longClickable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Buttom_phone"/>
+
+
 
     <ImageButton
         android:id="@+id/ButtonHelpPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_baseline_help_outline"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/Buttom_pass"
-        app:layout_constraintTop_toTopOf="@+id/Buttom_pass" />
+        app:layout_constraintBottom_toBottomOf="@+id/Buttom_pass"
+        app:layout_constraintStart_toEndOf="@+id/Buttom_pass"
+        app:layout_constraintTop_toTopOf="@+id/Buttom_pass"
+        android:layout_marginBottom="20dp"/>
 
 
     <EditText
@@ -115,6 +121,9 @@
         android:paddingStart="10dp"
         android:hint="@string/Password_chek"
         style="@style/SubtextButton"
+        android:drawableRight="@drawable/ic_eyes_outline_bar_24"
+        android:paddingEnd="10dp"
+        android:longClickable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Buttom_pass"/>

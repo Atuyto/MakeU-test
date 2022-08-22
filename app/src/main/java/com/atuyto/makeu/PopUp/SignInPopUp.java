@@ -4,12 +4,19 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckedTextView;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,12 +32,16 @@ import com.atuyto.makeu.R;
 import com.atuyto.makeu.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
 
 
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,6 +51,8 @@ public class SignInPopUp extends AppCompatActivity {
     private String UserSex = "";
     private String Name, FirstName, Email, Password, CheckPassword, PhoneNumber, sizeStr, weightStr;
     private int weight, size;
+
+    private boolean passwordvisible;
 
     private FirebaseAuth mAuth;
 
@@ -60,6 +73,8 @@ public class SignInPopUp extends AppCompatActivity {
         EditText SignIn_Weight = SignInpopup.findViewById(R.id.Buttom_poids);
         EditText SignIn_Size = SignInpopup.findViewById(R.id.Buttom_taille);
 
+
+
         SignIn_Name.setText(null);
         SignIn_FirstName.setText(null);
         SignIn_Email.setText(null);
@@ -77,6 +92,10 @@ public class SignInPopUp extends AppCompatActivity {
 
         ImageView buttonH, buttonF, buttonA;
         buttonH = SignInpopup.findViewById(R.id.Button_H); buttonF = SignInpopup.findViewById(R.id.Button_F); buttonA = SignInpopup.findViewById(R.id.Button_A);
+
+
+        mdpSHowHide(SignIn_Password); mdpSHowHide(SignIn_checkPassword);
+
 
         Button_HelpPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,6 +189,7 @@ public class SignInPopUp extends AppCompatActivity {
 
                 if(CountVerif == 9){
                     FirebaseUser User = FirebaseAuth.getInstance().getCurrentUser();
+                    mAuth.setLanguageCode("fr");
 
                     if(User.getEmail().equals(Email) ){
                         Toast.makeText(LoginActivity, "Vous etes déjà inscrit", Toast.LENGTH_SHORT).show();
@@ -237,6 +257,33 @@ public class SignInPopUp extends AppCompatActivity {
 
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    private void mdpSHowHide(EditText EditName){
+        EditName.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                final int right = 2;
+                if(event.getAction() == MotionEvent.ACTION_UP){
+                    if(event.getRawX()>=EditName.getRight()-EditName.getCompoundDrawables()[right].getBounds().width()){
+                        int selection = EditName.getSelectionEnd();
+                        if(passwordvisible){
+                            EditName.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_eyes_outline_bar_24, 0);
+                            EditName.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            passwordvisible=false;
+                        }else {
+                            EditName.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_eyes_outline_nobar_24, 0);
+                            EditName.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            passwordvisible=true;
+                        }
+                        EditName.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+    }
+
     private void VerifMdp(EditText NameEditText, EditText SecondNameEditText, String Name, String SecondName, Context context, LayoutInflater inflater, AlertDialog.Builder dialogBuilder )
     {
 
@@ -282,6 +329,7 @@ public class SignInPopUp extends AppCompatActivity {
         message.setText(R.string.dialog_message);
         dialogBuilder.setView(PopUpMessage).create().show();
     }
+
 
 }
 

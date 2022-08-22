@@ -2,7 +2,7 @@ package com.atuyto.makeu;
 
 public class User {
 
-    public String name, email, first_name, phone, weight, size, sex;
+    public String name, email, first_name, phone, weight, size, sex, Password;
 
 
     public User(){}
@@ -16,6 +16,7 @@ public class User {
         this.weight = weight;
         this.size = size;
         this.sex = sex;
+        this.Password = Password;
 
 
 
