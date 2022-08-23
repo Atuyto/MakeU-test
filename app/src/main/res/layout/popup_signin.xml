@@ -8,6 +8,8 @@
     android:background="@drawable/box"
     app:circularflow_viewCenter="@dimen/Default_Margin">
 
+
+
     <TextView
         android:id="@+id/title"
         style="@style/DefaultTextStyleWhite"
@@ -18,8 +20,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
     <EditText
         android:id="@+id/Buttom_Firstname"
@@ -128,6 +128,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Buttom_pass"/>
 
+
     <ImageView
         android:id="@+id/line_separe"
         android:layout_width="300dp"
@@ -137,6 +138,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Buttom_check_pass" />
+
+
 
     <TextView
         android:id="@+id/subtexte_phys"
@@ -241,5 +244,18 @@
         app:layout_constraintEnd_toEndOf="@+id/line_separe"
         app:layout_constraintStart_toStartOf="@+id/line_separe"
         app:layout_constraintTop_toBottomOf="@+id/nav_button_sex" />
+
+    <ProgressBar
+        android:id="@+id/splash"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+
+        android:indeterminate="true"
+        android:indeterminateTint="@color/Red"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line_separe" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

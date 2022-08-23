@@ -2,8 +2,10 @@ package com.atuyto.makeu.PopUp;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.text.InputType;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -18,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,8 +30,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.atuyto.makeu.LoginActivity;
 import com.atuyto.makeu.MainActivity;
 import com.atuyto.makeu.R;
+import com.atuyto.makeu.SplashScreen;
 import com.atuyto.makeu.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -45,7 +50,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SignInPopUp extends AppCompatActivity {
+public class SignInPopUp extends LoginActivity {
 
     int CountVerif = 0;
     private String UserSex = "";
@@ -86,6 +91,9 @@ public class SignInPopUp extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+
+        ProgressBar splash = SignInpopup.findViewById(R.id.splash);
+
         Button Button_Valide = SignInpopup.findViewById(R.id.Button_valide);
         ImageButton Button_HelpPassword = SignInpopup.findViewById(R.id.ButtonHelpPassword);
 
@@ -107,6 +115,8 @@ public class SignInPopUp extends AppCompatActivity {
         buttonH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 buttonH.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.circle_button_full));
                 buttonF.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.circle_button_outline));
                 buttonA.setBackground(ContextCompat.getDrawable(LoginActivity, R.drawable.circle_button_outline));
@@ -181,8 +191,12 @@ public class SignInPopUp extends AppCompatActivity {
                     SignIn_Phone.setHintTextColor(ContextCompat.getColor(LoginActivity, R.color.Active_bottom));
                 }
 
-                if(!UserSex.equals(""))
+                if(!UserSex.equals("")){
                     CountVerif++;
+
+                }
+
+
                 else
                     Toast.makeText(LoginActivity, "Veuillez séléctionner votre genre", Toast.LENGTH_SHORT).show();
 
@@ -209,10 +223,16 @@ public class SignInPopUp extends AppCompatActivity {
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if (task.isSuccessful()) {
 
-                                                                Toast.makeText(LoginActivity, "users register", Toast.LENGTH_SHORT).show();
-                                                                LoginActivity.startActivity(new Intent(LoginActivity, MainActivity.class));
-                                                                dialogBuilder.setCancelable(true);
-                                                                ActivityCompat.finishAffinity((Activity) LoginActivity);
+                                                                splash.setVisibility(view.VISIBLE);
+                                                                new Handler().postDelayed(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        Toast.makeText(LoginActivity, "users register", Toast.LENGTH_SHORT).show();
+                                                                        LoginActivity.startActivity(new Intent(LoginActivity, MainActivity.class));
+                                                                        dialogBuilder.setCancelable(true);
+                                                                        ActivityCompat.finishAffinity((Activity) LoginActivity);
+                                                                    }
+                                                                }, 2000);
                                                             }
                                                             else{
                                                                 Toast.makeText(LoginActivity, "Probleme", Toast.LENGTH_SHORT).show();

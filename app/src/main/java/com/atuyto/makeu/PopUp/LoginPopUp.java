@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
@@ -12,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +53,7 @@ public class LoginPopUp {
         Password.setText(null);
 
         Button button_valide = LoginPopUp.findViewById(R.id.Button_valide);
+        ProgressBar splash = LoginPopUp.findViewById(R.id.splash);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -100,9 +103,15 @@ public class LoginPopUp {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                LoginActivity.startActivity(new Intent(LoginActivity, MainActivity.class));
-                                dialogBuilder.setCancelable(true);
-                                ActivityCompat.finishAffinity((Activity) LoginActivity);
+                                splash.setVisibility(view.VISIBLE);
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        LoginActivity.startActivity(new Intent(LoginActivity, MainActivity.class));
+                                        dialogBuilder.setCancelable(true);
+                                        ActivityCompat.finishAffinity((Activity) LoginActivity);
+                                    }
+                                }, 2000);
 
                             }
                             else{
