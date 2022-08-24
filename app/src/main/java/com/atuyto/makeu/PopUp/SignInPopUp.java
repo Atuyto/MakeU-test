@@ -35,6 +35,7 @@ import com.atuyto.makeu.MainActivity;
 import com.atuyto.makeu.R;
 import com.atuyto.makeu.SplashScreen;
 import com.atuyto.makeu.User;
+import com.atuyto.makeu.UserInformation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
@@ -222,8 +223,9 @@ public class SignInPopUp extends LoginActivity {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if (task.isSuccessful()) {
-
-                                                                splash.setVisibility(view.VISIBLE);
+                                                                UserInformation userinfo = new UserInformation();
+                                                                userinfo.UserInformation(Name, FirstName, Email, weightStr, sizeStr, UserSex);
+                                                                splash.setVisibility(View.VISIBLE);
                                                                 new Handler().postDelayed(new Runnable() {
                                                                     @Override
                                                                     public void run() {

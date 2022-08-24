@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/Default_Margin"
     android:background="@drawable/box"
-    app:circularflow_viewCenter="@dimen/Default_Margin">
+    >
 
 
 
@@ -15,7 +15,6 @@
         style="@style/DefaultTextStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:text="@string/Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

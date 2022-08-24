@@ -41,6 +41,9 @@
     <string name="MdpOublier">Mot de passe oublié</string>
     <string name="resetPassword">Rénitialiser votre mot de passe</string>
     <string name="resetPasswordEmail">Entrer votre Email |</string>
+    <string name="Lipide">40% Lipides</string>
+    <string name="Proteine">20% Protéine</string>
+    <string name="glucide">40% Glucide</string>
 
 
 </resources>

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/Default_Margin"
+    android:padding="40dp"
     android:background="@drawable/box"
-    app:circularflow_viewCenter="40dp">
+    >
 
     <TextView
         android:id="@+id/textView"

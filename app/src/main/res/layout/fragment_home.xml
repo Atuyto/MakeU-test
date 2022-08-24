@@ -65,6 +65,107 @@
         android:layout_weight="3"
         >
 
+        <ImageButton
+            android:id="@+id/EditButtonDétaiCorps"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/ic_baseline_edit_24"
+            android:backgroundTint="@color/black" />
+
+        <ImageButton
+            android:id="@+id/HelpButtonPGL"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignTop="@+id/linecenter"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="-10dp"
+            android:layout_toEndOf="@+id/linecenter"
+            android:background="@drawable/ic_baseline_help_outline"
+            android:backgroundTint="@color/grey" />
+
+
+        <TextView
+            android:id="@+id/poidsCorpsText"
+            style="@style/DefaultTextStyleBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/IMCText"
+            android:layout_marginBottom="20dp"
+            android:layout_alignStart="@+id/IMCText"
+            android:text="poids" />
+
+        <TextView
+            android:id="@+id/IMCText"
+            style="@style/DefaultTextStyleBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_centerVertical="true"
+            android:text="imc" />
+
+        <ImageButton
+            android:id="@+id/HelpButtonIMC"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignTop="@+id/IMCText"
+            android:layout_toEndOf="@+id/IMCText"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="-10dp"
+            android:background="@drawable/ic_baseline_help_outline"
+            android:backgroundTint="@color/grey" />
+
+        <TextView
+            android:id="@+id/sizeText"
+            style="@style/DefaultTextStyleBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/IMCText"
+            android:layout_alignStart="@+id/IMCText"
+            android:text="taille" />
+
+
+        <ImageView
+            android:id="@+id/linecenter"
+            android:layout_width="4dp"
+            android:layout_height="140dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/box"
+            android:backgroundTint="@color/grey" />
+
+        <TextView
+            android:id="@+id/Glucide"
+            style="@style/DefaultTextStyleBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/IMCText"
+            android:layout_marginBottom="20dp"
+            android:layout_alignStart="@+id/Proteine"
+            android:text="@string/glucide" />
+
+        <TextView
+            android:id="@+id/Proteine"
+            style="@style/DefaultTextStyleBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="40dp"
+            android:text="@string/Proteine" />
+
+        <TextView
+            android:id="@+id/Lipide"
+            style="@style/DefaultTextStyleBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/IMCText"
+            android:layout_alignStart="@+id/Proteine"
+            android:text="@string/Lipide" />
 
     </RelativeLayout>
 

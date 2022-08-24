@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -24,19 +25,33 @@ import androidx.core.content.ContextCompat;
 
 import com.atuyto.makeu.MainActivity;
 import com.atuyto.makeu.R;
+import com.atuyto.makeu.UserInformation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginPopUp {
 
+    public static String UID = null;
     private String password, email;
 
     private FirebaseAuth mAuth;
     private int Count;
+
     private boolean passwordvisible;
+    private DatabaseReference mDatabase;
+
+
+    public static String name;
+    public static String fisrtName;
+    public static String sex;
+    public static String weight;
+    public static String dataEmail;
+    public static String size;
 
     @SuppressLint("NotConstructor")
     public void LoginPopUp(Context LoginActivity){
@@ -103,10 +118,14 @@ public class LoginPopUp {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                splash.setVisibility(view.VISIBLE);
+                                UID = FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getCurrentUser().getUid()).getKey().trim();
+                                splash.setVisibility(View.VISIBLE);
+                                updateData();
+
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
+
                                         LoginActivity.startActivity(new Intent(LoginActivity, MainActivity.class));
                                         dialogBuilder.setCancelable(true);
                                         ActivityCompat.finishAffinity((Activity) LoginActivity);
@@ -122,6 +141,7 @@ public class LoginPopUp {
                 }else {
                     Toast.makeText(LoginActivity, "Veuillez indiquer des information correcte ", Toast.LENGTH_SHORT).show();
                 }
+
 
 
 
@@ -158,4 +178,34 @@ public class LoginPopUp {
             }
         });
     }
+    private void updateData(){
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Users").child(UID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()){
+                    if(task.getResult().exists())
+                    {
+                        DataSnapshot dataSnapshot = task.getResult();
+                        dataEmail = dataSnapshot.child("email").getValue().toString().trim();
+                        name = dataSnapshot.child("name").getValue().toString().trim();
+                        fisrtName = dataSnapshot.child("first_name").getValue().toString().trim();
+                        sex = dataSnapshot.child("sex").getValue().toString().trim();
+                        size = dataSnapshot.child("size").getValue().toString().trim();
+                        weight = dataSnapshot.child("weight").getValue().toString().trim();
+
+                        UserInformation userinfo = new UserInformation();
+                        userinfo.UserInformation(name, fisrtName, dataEmail, weight, size, sex);
+
+                    }
+
+                }
+                else {
+                    Log.i("TAG", "erreur");
+                }
+            }
+        });
+    }
+
+
 }
