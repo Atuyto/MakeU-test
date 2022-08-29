@@ -44,6 +44,7 @@
     <string name="Lipide">40% Lipides</string>
     <string name="Proteine">20% Protéine</string>
     <string name="glucide">40% Glucide</string>
+    <string name="poids">Poids</string>
 
 
 </resources>

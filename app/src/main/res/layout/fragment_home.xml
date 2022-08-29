@@ -6,7 +6,7 @@
     android:layout_weight="10"
     >
 
-                    <!-- Objectif de pas-->
+    <!--################ objectif Pas ########################-->
     <RelativeLayout
         android:layout_width="320dp"
         android:layout_height="100dp"
@@ -18,6 +18,7 @@
         >
 
         <TextView
+            android:id="@+id/PAS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Walk_text"
@@ -25,12 +26,30 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="@dimen/Default_Margin"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="20dp"
             />
 
+        <TextView
+            android:id="@+id/ratio_pas"
+            style="@style/DefaultTextStyleWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/PAS"
+            android:layout_alignStart="@+id/PAS"
+            android:text="Pas/objectif" />
+
+        <TextView
+            android:id="@+id/percPas"
+            style="@style/DefaultTextStyleWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ratio_pas"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:text="ratio%" />
 
         <Button
-            android:id="@+id/button_edit"
+            android:id="@+id/buttonEditPas"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentTop="true"
@@ -39,21 +58,20 @@
             android:layout_marginRight="5dp"
             android:background="@drawable/ic_baseline_edit_24" />
 
-        <ImageView
+        <ProgressBar
+            android:id="@+id/ProgressBarPas"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="250dp"
             android:layout_height="5dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="50dp"
-            android:background="@drawable/progress_bar"
-            android:backgroundTint="@color/white"
-
-
-            />
+            android:layout_marginBottom="40dp"
+            android:progress="0"
+            android:progressDrawable="@drawable/progress_bar" />
 
 
     </RelativeLayout>
-                <!-- détails corporel-->
+                <!--################ détails corporel ########################-->
 
     <RelativeLayout
         android:layout_width="320dp"
@@ -168,16 +186,65 @@
             android:text="@string/Lipide" />
 
     </RelativeLayout>
-
+    <!--################ Objectif Poids ########################-->
+    <!--################ calendrier ########################-->
     <RelativeLayout
         android:layout_width="320dp"
-        android:layout_height="100dp"
-        android:background="@drawable/box"
-        android:elevation="10dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="70dp"
         android:layout_gravity="center"
+        android:layout_marginTop="40dp"
         android:layout_weight="1"
-        >
+        android:background="@drawable/box"
+        android:elevation="10dp">
+        <Button
+            android:id="@+id/buttonEditPoids"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/ic_baseline_edit_24" />
+
+
+        <TextView
+            android:id="@+id/POIDS"
+            style="@style/DefaultTextStyleWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/poids" />
+
+        <TextView
+            android:id="@+id/ratioPoid"
+            style="@style/DefaultTextStyleWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/POIDS"
+            android:layout_alignStart="@+id/POIDS"
+            android:text="Poids / objectif" />
+
+        <TextView
+            style="@style/DefaultTextStyleWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ratioPoid"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:text="ratio%" />
+
+        <ProgressBar
+            android:id="@+id/ProgressBarPoid"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="250dp"
+            android:layout_height="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:progress="0"
+            android:progressDrawable="@drawable/progress_bar" />
 
 
     </RelativeLayout>
