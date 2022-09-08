@@ -118,6 +118,7 @@ public class LoginPopUp {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
+
                                 UID = FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getCurrentUser().getUid()).getKey().trim();
                                 splash.setVisibility(View.VISIBLE);
                                 updateData();

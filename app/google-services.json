@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "170724546668",
+    "firebase_url": "https://make-u-9a3ab-default-rtdb.firebaseio.com",
+    "project_id": "make-u-9a3ab",
+    "storage_bucket": "make-u-9a3ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170724546668:android:497a72ceba35cd237ba049",
+        "android_client_info": {
+          "package_name": "com.atuyto.makeu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170724546668-2b2g1odblbl88h1grtk9hl64tv6hqtaa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.atuyto.makeu",
+            "certificate_hash": "c4dfcef9c9d0889906c9f4d95c662beef3f91db5"
+          }
+        },
+        {
+          "client_id": "170724546668-cm17mgk863rpka4hrtpi2oktqp3m9hg7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaS5d9Rix1d1TUZZzDMdee9WwcKYavmsU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170724546668-cm17mgk863rpka4hrtpi2oktqp3m9hg7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

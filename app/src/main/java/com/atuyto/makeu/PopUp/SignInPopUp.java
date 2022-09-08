@@ -109,7 +109,8 @@ public class SignInPopUp extends LoginActivity {
         Button_HelpPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopUpMessage(inflater, dialogBuilder);
+                PopUpMessage( inflater, dialogBuilder, "Mot de passe", "Votre mot de passe doit être supérieur à 8 caractères et doit contenir une majuscule, des chiffres et un de ces caractères : !@/#$%&*()_+=|<>?{}\\\\[\\\\]~-] \\]");
+
             }
         });
 
@@ -223,6 +224,7 @@ public class SignInPopUp extends LoginActivity {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if (task.isSuccessful()) {
+
                                                                 UserInformation userinfo = new UserInformation();
                                                                 userinfo.UserInformation(Name, FirstName, Email, weightStr, sizeStr, UserSex);
                                                                 splash.setVisibility(View.VISIBLE);
@@ -233,6 +235,7 @@ public class SignInPopUp extends LoginActivity {
                                                                         LoginActivity.startActivity(new Intent(LoginActivity, MainActivity.class));
                                                                         dialogBuilder.setCancelable(true);
                                                                         ActivityCompat.finishAffinity((Activity) LoginActivity);
+
                                                                     }
                                                                 }, 2000);
                                                             }
@@ -333,7 +336,7 @@ public class SignInPopUp extends LoginActivity {
         }else {
             NameEditText.setBackground(ContextCompat.getDrawable(context, R.drawable.button_red));
             NameEditText.setHintTextColor(ContextCompat.getColor(context, R.color.Red));
-            PopUpMessage( inflater, dialogBuilder);
+            PopUpMessage( inflater, dialogBuilder, "Mot de passe", "Votre mot de passe doit être supérieur à 8 caractères et doit contenir une majuscule, des chiffres et un de ces caractères : !@/#$%&*()_+=|<>?{}\\\\[\\\\]~-] \\]");
 
         }
 
@@ -341,14 +344,14 @@ public class SignInPopUp extends LoginActivity {
 
     }
 
-    private void PopUpMessage(LayoutInflater inflater, AlertDialog.Builder dialogBuilder ){
+    private void PopUpMessage(LayoutInflater inflater, AlertDialog.Builder dialogBuilder, String titleMess, String Message ){
         final View PopUpMessage = inflater.inflate( R.layout.popup_message, null );
 
         TextView message = PopUpMessage.findViewById(R.id.MessageText);
         TextView Title = PopUpMessage.findViewById(R.id.TitleText);
 
-        Title.setText(R.string.Mdp);
-        message.setText(R.string.dialog_message);
+        Title.setText(titleMess);
+        message.setText(Message);
         dialogBuilder.setView(PopUpMessage).create().show();
     }
 

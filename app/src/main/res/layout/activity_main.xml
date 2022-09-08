@@ -10,7 +10,7 @@
     >
 
     <TextView
-        android:id="@+id/text_title"
+        android:id="@+id/pageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Home_Text"

@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.atuyto.makeu.PopUp.LoginPopUp;
 import com.atuyto.makeu.PopUp.SignInPopUp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -36,7 +38,6 @@ public class LoginActivity extends AppCompatActivity {
         mainActivity = new Intent(LoginActivity.this, MainActivity.class);
         loginButton = findViewById(R.id.BLogIn);
         signingButton = findViewById(R.id.BSignUp);
-
 
 
         signingButton.setOnClickListener(new View.OnClickListener() {
